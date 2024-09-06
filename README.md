@@ -1,7 +1,8 @@
 # Named-Entity-Recognition
 
+Named Entity Recognition (NER) Project
 Overview
-This repository is a comprehensive project for Named Entity Recognition (NER), a core task in Natural Language Processing (NLP). NER aims to identify and classify specific entities such as people, organizations, locations, and events from unstructured text. The project demonstrates building an NER model using deep learning techniques with Keras and includes visualizations for insights into model predictions.
+This project demonstrates the implementation of Named Entity Recognition (NER), a critical task in Natural Language Processing (NLP). The goal of NER is to identify entities such as people, organizations, locations, dates, and more from unstructured text data. The project utilizes a deep learning-based approach using Keras and includes visualizations to gain insights into model predictions.
 
 Table of Contents
 Introduction
@@ -16,9 +17,9 @@ Visualization
 Conclusion
 References
 Introduction
-Named Entity Recognition (NER) is used to extract structured data from unstructured text. This notebook demonstrates the process of building and training an NER model using various NLP and deep learning libraries, including Keras, TensorFlow, and SpaCy.
+Named Entity Recognition (NER) is a powerful tool in NLP, enabling the extraction of structured data from unstructured text. This project focuses on building a deep learning model for NER using a Bidirectional LSTM network.
 
-Key entity types in the NER task:
+The key entity types recognized in this project are:
 
 geo: Geographical Entity
 org: Organization
@@ -30,17 +31,19 @@ eve: Event
 nat: Natural Phenomenon
 Project Setup
 Dependencies
-Before running the project, ensure that the following dependencies are installed:
+Ensure the following dependencies are installed before running the project:
 
 bash
 Copy code
 pip install numpy pandas keras spacy matplotlib seaborn
 Dataset
-The project utilizes the Named Entity Recognition (NER) Corpus. It contains text data labeled with various named entity types, and the model is designed to extract these entities.
+The dataset used in this project is the Named Entity Recognition (NER) Corpus, which contains labeled text data for various entity types.
 
 Data Preprocessing
-Clean Data: The data is cleaned by converting strings in the POS and Tag columns into lists, ensuring proper format for analysis.
-Normalization: Tags are converted to uppercase for consistency.
+The following steps are applied during data preprocessing:
+
+Data Cleaning: Converts string representations in POS and Tag columns into lists for easier manipulation.
+Normalization: Ensures that tags are standardized by converting them to uppercase.
 python
 Copy code
 def preprocess_data(data):
@@ -51,11 +54,11 @@ def preprocess_data(data):
         data['Tag'][i] = [str(word.upper()) for word in tags]
     return data
 Model Architecture
-The NER model is built using a Bidirectional LSTM network:
+The model architecture is built using Bidirectional LSTM layers for better context understanding. The main components are:
 
-Embedding Layer: Converts words into dense vectors.
-Bidirectional LSTM: Captures dependencies in both forward and backward directions.
-TimeDistributed Dense Layer: Predicts entity tags for each word.
+Embedding Layer: Converts words into dense vector representations.
+Bidirectional LSTM: Captures the context in both forward and backward directions.
+TimeDistributed Dense Layer: Predicts entity tags for each word in the sentence.
 python
 Copy code
 model = Sequential()
@@ -65,7 +68,7 @@ model.add(Dropout(0.2))
 model.add(TimeDistributed(Dense(num_tags, activation='softmax')))
 model.compile(optimizer=Adam(learning_rate=0.01), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 Training
-The model is trained using an early stopping mechanism to prevent overfitting, monitoring the validation loss and saving the best-performing model.
+The model is trained using early stopping to prevent overfitting. The model is optimized using the Adam optimizer, and the training process is monitored by validation loss.
 
 python
 Copy code
@@ -78,7 +81,7 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 Evaluation
-Plot the training and validation accuracy and loss to evaluate model performance:
+After training, the model's performance is evaluated by plotting the training and validation accuracy and loss.
 
 python
 Copy code
@@ -87,7 +90,7 @@ plt.plot(range(epochs), val_acc, label='Validation Accuracy')
 plt.legend(loc='lower right')
 plt.title('Training and Validation Accuracy')
 Inference
-Predict named entities in a given sentence:
+To predict entities in a new sentence, the following function is used. It processes the input text and returns the predicted named entities.
 
 python
 Copy code
@@ -98,7 +101,7 @@ def get_entities(sentence):
     predicted_tags = np.argmax(predictions, axis=-1)[0]
     return [(sentence.split()[i], tag_tokenizer.index_word[tag]) for i, tag in enumerate(predicted_tags) if tag != 0]
 Visualization
-Visualize entities in a sentence using matplotlib:
+The predicted entities in a sentence are visualized using matplotlib, with each entity highlighted according to its type.
 
 python
 Copy code
@@ -110,7 +113,7 @@ def visualize_entities(sentence, entities):
         ax.axhspan(0, 1, xmin=start_index / len(words), xmax=(start_index + 1) / len(words), facecolor=get_color(entity_type), alpha=0.5)
     plt.show()
 Conclusion
-This repository provides a practical implementation of Named Entity Recognition using modern deep learning techniques. It showcases the full pipeline from data preprocessing to model training, evaluation, and visualization.
+This project demonstrates how to build, train, and evaluate an NER model using deep learning techniques. It also highlights how to visualize model predictions to gain better insights into the NER task.
 
 References
 NER Dataset on Kaggle
