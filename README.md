@@ -1,6 +1,3 @@
-# Named-Entity-Recognition
-
-```
 # Named Entity Recognition (NER) with Deep Learning
 
 This repository contains a Python notebook that demonstrates how to build a Named Entity Recognition (NER) model using deep learning techniques. The model is trained on a NER dataset and can identify entities such as people, organizations, locations, and more within text.
@@ -94,4 +91,3 @@ The notebook includes visualizations to help understand the model's predictions,
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details. 
-``` 
