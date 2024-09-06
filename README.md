@@ -56,7 +56,7 @@ pip install pandas numpy scikit-learn tensorflow spacy matplotlib seaborn
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/ing-MARWA/Named_Entity_Recogniiton.git
    ```
 
 2. Download the dataset from the provided link.
