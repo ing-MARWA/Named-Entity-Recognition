@@ -23,7 +23,7 @@ This project implements a Bidirectional LSTM (Long Short-Term Memory) neural net
 
 The model is trained on the "Named Entity Recognition (NER) Corpus" dataset available on Kaggle:
 
-- **Dataset Source:** [https://www.kaggle.com/datasets/naseralqaydeh/named-entity-recognition-ner-corpus](https://www.kaggle.com/datasets/naseralqaydeh/named-entity-recognition-ner-corpus)
+- **Dataset Source:** [NER](https://www.kaggle.com/datasets/naseralqaydeh/named-entity-recognition-ner-corpus)
 - **Entities:** The dataset includes the following entity types:
     - **geo:** Geographical Entity
     - **org:** Organization
